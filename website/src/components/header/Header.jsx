@@ -72,9 +72,9 @@ function Header({type}) {
                     <>
                         <h1 className="headerTitle">A liftetime of Discounts? It's Genius</h1>
                         <p className="headerDesc">
-                            Get rewarded for your travels- Unclock instant savinngs of 10% or more with free LamaBooking Account
+                            Get rewarded for your travels- Unclock instant savinngs of 10% or more with free CheckInnJoy Account
                         </p>
-                        <button className="headerBtn">Sign In | Register</button>
+                        <button className="headerBtn sign-in-register-btn">Sign In | Register</button>
                         <div className="headerSearch">
                             <div className="headerSearchItem">
                                 <FontAwesomeIcon icon={faBed} className="headerIcon"/>

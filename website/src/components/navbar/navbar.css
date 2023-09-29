@@ -1,11 +1,13 @@
-div.navbar{
+div.navbar {
     height: 50px;
-    background-color: #003580;
+    background-color: #110321;
     display: flex;
     justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
-div.navContainer{
+div.navContainer {
     width: 100%;
     max-width: 1024px;
     color: white;
@@ -14,14 +16,27 @@ div.navContainer{
     align-items: center;
 }
 
-span.logo{
+span.logo {
     font-weight: 500;
 }
 
-button.navButton{
+button.navButton {
     margin-left: 20px;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 16px;
     cursor: pointer;
-    color: #003580;
+    color: #110321;
+    border-radius: 20px;
+    background-color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button.navButton:hover {
+    background-color: #FF5722;
+    color: white;
+    box-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white;
+}
+
+button.navButton:focus {
+    outline: none;
 }

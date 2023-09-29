@@ -4,7 +4,7 @@ function Navbar(){
     return (  
         <div className="navbar">
             <div className="navContainer">
-                <span className="logo">CheckInnJoy</span>
+                <h2 className="logo">CheckInnJoy</h2>
                 <div className="navItems">
                     <button className="navButton">Register</button>
                     <button className="navButton">Login</button>
