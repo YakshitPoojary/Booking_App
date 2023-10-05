@@ -1,0 +1,43 @@
+.navbar{
+  height: 50px;
+  background-color: rgb(20, 18, 58);
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.navContainer{
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-top: 15px;
+  height: 30px;
+}
+
+.logo{
+  font-weight: 500;
+}
+
+.navButton{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.navButton:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* Add a subtle white glow on hover */
+}
+
+.logo {
+  font-weight: 500;
+  font-size: 24px; 
+}

@@ -1,0 +1,71 @@
+form{
+    height: 450px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 0px 35px;
+    background-color: aliceblue;
+}
+
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+    color: #080710;
+}
+
+button{
+    cursor: pointer;
+}
+
+.login-form {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.login-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.login-button {
+  margin-top: 1.25rem;
+}
+
+.login-links a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
