@@ -1,69 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&family=Anek+Odia:wght@100;300&family=Beau+Rivage&family=Bebas+Neue&family=Charis+SIL&family=Exo:wght@200;300;400;700;800&family=Lobster&family=Maven+Pro&family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;0,800;0,900;1,200&family=Noto+Serif:wght@700&family=Open+Sans:wght@300&family=Poppins:wght@200&family=Raleway&family=Rubik:ital,wght@1,300&family=Shadows+Into+Light&family=Source+Serif+Pro:ital@1&family=Water+Brush&display=swap');
+/* register.css */
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.registration-section {
+  height: 100vh;
 }
 
-body.regBody{
-    background:linear-gradient(130deg, #003580, #00c6ff);
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+form{
+    padding: 45px 35px;
+    margin-top: 40px;
 }
 
-.reTitle{
-    color:black;
-    justify-content: center;
-    position: relative;
-    font-family: "Bebas Neue";
-    font-size: 60px;
-}
-
-.reTitle::before{
-    content: '';
-    position: absolute;
-    left:0;
-    bottom:0;
-    height: 3px;
-    width: 80px;
-    background:linear-gradient(130deg, #003580, #00c6ff);
-}
-
-.register{
-    max-width: 1000px;
-    background:white;
-    padding: 25px 30px;
-    border-radius: 5px;
-}
-
-.rInput{
-    margin-top: 20px;
-    width: 40%;
-    height: 40px;
-
-}
-
-.btn{
-    border: none;
-    background-color: #0071c2;
-    color: white;
+.registration-title {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
     font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 80px;
-    height: 30px;
-    margin-top: 20px;
 }
 
-.lButton:disabled{
-    background-color: #0071c28c;
-    cursor: not-allowed;
+.registration-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
 }
 
-.submit-success, .submit-error {
-    display: none;
+.registration-form-group-inner {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.registration-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.registration-select {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.registration-select-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+}
+  
+.registration-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  width: 200px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  font-size: 1.2rem; /* You can adjust the font size if needed */
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
 }

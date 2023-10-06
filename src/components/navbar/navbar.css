@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
 }
 
 .navContainer{
@@ -26,7 +26,7 @@
 .navButton{
   margin-left: 20px;
   border: none;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
   color: #003580;
   border-radius: 8px;

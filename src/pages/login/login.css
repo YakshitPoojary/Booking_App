@@ -1,35 +1,35 @@
 form{
-    height: 450px;
-    width: 400px;
-    background-color: rgba(255,255,255,0.13);
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 40px rgba(8,7,16,0.6);
-    padding: 0px 35px;
-    background-color: aliceblue;
+  height: 450px;
+  width: 450px;
+  background-color: rgba(255,255,255,0.13);
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  padding: 0px 35px;
+  background-color: aliceblue;
 }
 
 form *{
-    font-family: 'Poppins',sans-serif;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    outline: none;
-    border: none;
-    color: #080710;
+  font-family: 'Poppins',sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+  color: #080710;
 }
 
 button{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .login-form {
-    margin-top: 1rem;
-    text-align: center;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .login-header {
@@ -49,16 +49,31 @@ button{
 }
 
 .form-control {
-  width: 100%;
+  width: 90%;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   outline: none;
+  margin-top: 15px;
 }
 
 .login-button {
   margin-top: 1.25rem;
+  padding: 10px;  
+}
+
+/* Increase the size of the login button */
+.login-button input[type="submit"] {
+  width: 150px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  font-size: 1.2rem; /* You can adjust the font size if needed */
+  cursor: pointer;
+}
+
+
+.login-links {
+  margin-top: 20px;
 }
 
 .login-links a {
@@ -68,4 +83,24 @@ button{
 
 .login-links a:hover {
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-links button {
+  background: none;
+  border: none;
+  outline: none;
+  color: #007bff;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.login-links button:hover {
+  text-decoration: underline;
+}
+
+.login-links div {
+  display: block; 
+  margin-top: 10px;
 }

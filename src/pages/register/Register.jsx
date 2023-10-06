@@ -1,28 +1,87 @@
 import React from "react";
-import "./register.css"
+import "./register.css";
+import Navbar from "../../components/navbar/Navbar";
 
 const Register = () => {
-
-    return (
-        <>
-        <body className="regBody">
-            <div className="register">
-                <h1 className="reTitle">Register</h1>
-                <div className="inputs">
-                    <input className="rInput" type="text" id="username" placeholder="First Name"/>
-                    <input type="email" id="email" className="rInput" placeholder="Email"/>
-                    <input className="rInput" type="password"  id="password" placeholder="Password"/>
-                    <input className="rInput" type="text"  id="country" placeholder="Country"/>
-                    <input className="rInput" type="text"  id="city" placeholder="City"/>               
-                    <input className="rInput" type="text"  id="phone" placeholder="+1 234 567 89"/>
+  return (
+    <div>
+      <Navbar />
+      <section className="registration-section">
+        <div className="registration-card">
+            <form>
+            <h3 className="registration-title">Register</h3>
+              <div className="registration-form-group">
+                <div className="registration-form-group-inner">
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    className="registration-input"
+                    placeholder="Name"
+                  />
                 </div>
-                <div class="footer">
-                    <button className="btn">Go!</button>
-                </div>
-            </div>      
-        </body>
-        </>
-  )       
-}
+              </div>
 
-export default Register
+              <div className="registration-form-group">
+                <div className="registration-form-group-inner">
+                  <input
+                    type="text"
+                    className="registration-input"
+                    id="email"
+                    name="email"
+                    pattern="^[a-zA-Z0-9._%+-]+@.*somaiya\.edu$"
+                    title="Invalid email format"
+                    placeholder="Email Id"
+                  />
+                </div>
+              </div>
+
+              <div className="registration-form-group">
+                <div className="registration-form-group-inner">
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    className="registration-input"
+                    placeholder="Username"
+                  />
+                </div>
+              </div>
+
+              <div className="registration-form-group">
+                <div className="registration-form-group-inner">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    title="Password must be at least 8 characters long"
+                    className="registration-input"
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="registration-form-group-inner">
+                  <input
+                    type="password"
+                    id="cpassword"
+                    name="cpassword"
+                    className="registration-input"
+                    placeholder="Confirm Password"
+                  />
+                </div>
+                <div className="registration-button">
+                <input
+                  className="btn btn-primary btn-md"
+                  type="submit"
+                  value="Submit"
+                />
+              </div>
+              </div>
+            </form>
+
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Register;
