@@ -9,14 +9,14 @@
 .headerContainer {
   width: 100%;
   max-width: 1024px;
-  margin: 0px 0px 50px 0px;
+  margin: 10px 0px 50px 0px;
 }
 
 .headerContainer.listMode {
   margin: 20px 0px 15px 0px;
 }
 
-.headerList {
+.headerList{
   display: flex;
   gap: 40px;
   margin-bottom: 50px;

@@ -1,8 +1,6 @@
 import "./hotel.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
-import MailList from "../../components/mailList/MailList";
-import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
@@ -86,7 +84,7 @@ const Hotel = () => {
           <h1 className="hotelTitle">Tower Street Apartments</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
-            <span>Elton St 125 New york</span>
+            <span>Marol Andheri</span>
           </div>
           <span className="hotelDistance">
             Excellent location – 500m from center
@@ -136,8 +134,6 @@ const Hotel = () => {
             </div>
           </div>
         </div>
-        <MailList />
-        <Footer />
       </div>
     </div>
   );
