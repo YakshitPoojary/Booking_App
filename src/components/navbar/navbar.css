@@ -60,10 +60,10 @@
 }
 
 .frame .div-2 {
-  align-items: end;
+  align-items: flex-end;
   display: flex;
   gap: 40px; 
-  justify-content: flex-end; /* Align child elements to the right end */
+  justify-content: flex-end; 
   position: relative;
   width: 400px;
 }
