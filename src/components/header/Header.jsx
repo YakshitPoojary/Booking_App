@@ -6,15 +6,29 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "react-date-range/dist/styles.css"; 
 import "react-date-range/dist/theme/default.css"; 
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
+import image2 from '../images/hotel_2.2.jpg';
+import image1 from '../images/hotel_1.1.jpg';
+import image3 from '../images/hotel_3.3.jpg';
+import image4 from '../images/hotel_4.4.jpg';
+
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const images = [
+    `url('${image1}') no-repeat`,
+    `url('${image2}') no-repeat`,
+    `url('${image3}') no-repeat`,
+    `url('${image4}') no-repeat`,
+  ];
+
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -22,15 +36,16 @@ const Header = ({ type }) => {
       key: "selection",
     },
   ]);
+  
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
     room: 1,
   });
-
+  
   const navigate = useNavigate();
-
+  
   const handleOption = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -43,10 +58,19 @@ const Header = ({ type }) => {
   const handleSearch = () => {
     navigate("/hotels", { state: { destination, date, options } });
   };
-
+  
   const handleRegister = () => {
     navigate("/register")
   };
+
+ useEffect(() => {
+    const imageSlideshowInterval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); 
+    return () => {
+      clearInterval(imageSlideshowInterval);
+    };
+  }, [images]);
 
   return (
     <div className="header">
@@ -54,20 +78,15 @@ const Header = ({ type }) => {
         className={
           type === "list" ? "headerContainer listMode" : "headerContainer"
         }
+        style={type !== "list" ? { background: images[currentImageIndex] } : {}}
       >
         {type !== "list" && (
           <>
-            <div className="label">
-              <div className="explore-the-world">Explore the World</div>
-              <p className="and-get-rewarded-for">
-                And Get rewarded for your Travels!
-                <br />A Lifetime of Discounts? Its Genius!
-              </p>
-            </div>
-
             <div className="image-search-container">
 
-              <div className="headerImageContainer"></div>
+              <div className="headerImageContainer">
+
+              </div>
               
               <div className="headerSearch">
                 <div className="headerSearchItem">

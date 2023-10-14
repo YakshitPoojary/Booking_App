@@ -1,20 +1,24 @@
 .header {
-  background-image: url('https://de87ve0y4m3tc.cloudfront.net/comohotels.com-2459770069/cms/cache/v2/631ec2639edeb.jpg/1920x1080/fit/80/cf6b4992055e5573ae8fd53c78538e75.jpg'); /* Replace 'your-image.jpg' with your image file path */
-  background-size: cover; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
   color: white;
   display: flex;
   justify-content: center;
+  width: 100%;
   position: relative;
 }
 
 .headerContainer {
-  width: 100%;
-  max-width: 1024px;
-  margin: 10px 0px 50px 0px;
+  width: 200%;
+  max-width: 2000px;
+  margin: 0px 0px 0px 0px;
 }
 
 .headerContainer.listMode {
   margin: 0px 0px 0px 0px;
+  height: 0px;
 }
 
 .headerList{
@@ -134,7 +138,7 @@
 
 .headerImageContainer {
   position: absolute;
-  top: 400px; 
+  top: 450px; 
   right: 150px;
   width: 100%; 
   max-width: 1100px;
@@ -157,54 +161,11 @@
   justify-content: space-around;
   padding: 10px 0px;
   border-radius: 5px;
-  position: absolute;
-  top: 460px;
+  position: relative;
+  top: 520px;
   width: 100%; 
   max-width: 1024px;
-  margin-left: 40px;
-  margin-right: 20px;
+  margin-left: 275px;
   z-index: 2; 
   opacity: 1;
 }
-
-.label {
-  display: flex;
-  color: black;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%; 
-  text-align: center;
-  margin-top: 20px;
-}
-
-.label .explore-the-world {
-  color: #ffffff;
-  font-family: "Montagu Slab-SemiBold", Helvetica;
-  font-size: 96px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-.label .and-get-rewarded-for {
-  color: #ffffff;
-  font-family: "Montagu Slab-SemiBold", Helvetica;
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-bottom: 80px; 
-  margin-top: 40px;
-}
-
-
-.image-search-container{
-  margin-bottom: 100px;
-}
-
-
-
-
-
-
