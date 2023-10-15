@@ -93,12 +93,15 @@
   font-size: 18px;
   color: #555;
 }
+
 .hotelDetailsPrice > span {
   font-size: 14px;
 }
+
 .hotelDetailsPrice > h2 {
   font-weight: 300;
 }
+
 .hotelDetailsPrice > button {
   border: none;
   padding: 10px 20px;
@@ -144,8 +147,70 @@
 }
 
 .arrow{
-  margin: 20px;
+  margin: 0px 10px;
   font-size: 50px;
   color: lightgray;
   cursor: pointer;
+}
+
+.hotelReviews{
+  margin: 20px 0px 20px 0px;
+}
+
+.reviewsTitle {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+
+.reviewBox {
+  display: flex;
+  flex-direction: column;
+  background-color: #ebf3ff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 30px;
+  margin-left: 10px;
+}
+
+.reviewAuthor {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 30px;
+}
+
+.reviewHead {
+  margin: 0px 0px 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.reviewBox > p {
+  margin: 0px 0px 5px 0px;
+  overflow-wrap: break-word;
+}
+
+
+.reviewsContainer {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
+  margin: 0 -20px; 
+  padding: 10px 0; 
+  white-space: nowrap;
+  width: 100%;
+  max-width: 1500px;
+}
+
+.sliderControls {
+  display: flex;
+  justify-content: center;
+}
+
+.reviewsContainer::-webkit-scrollbar {
+  display: none;
 }

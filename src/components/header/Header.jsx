@@ -63,14 +63,18 @@ const Header = ({ type }) => {
     navigate("/register")
   };
 
- useEffect(() => {
+  useEffect(() => {
     const imageSlideshowInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); 
+      const headerContainer = document.querySelector(".headerContainer");
+      headerContainer.classList.toggle("sliding-animation");
+    }, 3000);
+  
     return () => {
       clearInterval(imageSlideshowInterval);
     };
   }, [images]);
+  
 
   return (
     <div className="header">

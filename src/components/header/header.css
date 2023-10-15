@@ -2,7 +2,6 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 500px;
   color: white;
   display: flex;
   justify-content: center;
@@ -14,7 +13,23 @@
   width: 200%;
   max-width: 2000px;
   margin: 0px 0px 0px 0px;
+  height: 500px;
+  transition: background 1s ease-in-out;
 }
+
+.sliding-animation {
+  animation: slide 10s linear infinite;
+}
+
+@keyframes slide {
+  0%{
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: -100% 0%;
+  }
+}
+
 
 .headerContainer.listMode {
   margin: 0px 0px 0px 0px;

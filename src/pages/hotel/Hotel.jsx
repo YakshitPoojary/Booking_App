@@ -9,6 +9,8 @@ import {
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import StarRatings from 'react-star-ratings';
+
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -52,11 +54,68 @@ const Hotel = () => {
     setSlideNumber(newSlideNumber)
   };
 
+  const handleReviewsMove = (direction) => {
+    const container = document.querySelector(".reviewsContainer");
+
+    if (direction === "l") {
+      container.scrollLeft -= 1000;
+    } else {
+      container.scrollLeft += 1000;
+    }
+
+  };
+
+  const reviews = [
+    {
+      author: "Ben Dover",
+      date: "October 10, 2023",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Deez Nuts",
+      date: "October 5, 2023",
+      content: "The location is perfect for exploring the city.",
+      rating: 8.7,
+    },
+    {
+      author: "Ligma Balls",
+      date: "October 5, 2023",
+      content: "The location is perfect for exploring the city.",
+      rating: 8.7,
+    },
+    {
+      author: "Sug Ondese",
+      date: "October 5, 2023",
+      content: "The location is perfect forforforforforforforforforforforfor exploring the city.",
+      rating: 8.7,
+    },
+    {
+      author: "Mike Litoris",
+      date: "October 5, 2023",
+      content: "The location is perfect for exploring the city.",
+      rating: 8.7,
+    },
+    {
+      author: "Nee Ga",
+      date: "October 5, 2023",
+      content: "The location is perfect for exploring the city.",
+      rating: 8.7,
+    },
+    {
+      author: "Mike Oxlong",
+      date: "October 10, 2023",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+  ];
+
   return (
     <div>
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
+
         {open && (
           <div className="slider">
             <FontAwesomeIcon
@@ -79,6 +138,7 @@ const Hotel = () => {
             />
           </div>
         )}
+
         <div className="hotelWrapper">
           <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">Seven Hills Apartments</h1>
@@ -104,6 +164,7 @@ const Hotel = () => {
               </div>
             ))}
           </div>
+
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
               <h1 className="hotelTitle">Stay in the heart of City</h1>
@@ -122,6 +183,54 @@ const Hotel = () => {
               </h2>
               <button>Reserve or Book Now!</button>
             </div>
+          </div>
+        </div>
+        
+        
+        <div className="hotelReviews">
+          <h1 className="reviewsTitle">Reviews</h1>
+          <div className="sliderReviews">
+            <div className="reviewsContainer">
+              {reviews.map((review, i) => (
+                <div
+                  key={i}
+                  className={`reviewBox ${
+                    i === slideNumber ? "active" : ""
+                  }`}
+                >
+                  <div className="reviewHead">
+                    <div className="reviewAuthor">
+                      <h3>
+                        <b>{review.author}</b>
+                      </h3>
+                    </div>
+                    <div className="reviewStars">
+                      <StarRatings
+                        rating={review.rating}
+                        starRatedColor="gold"
+                        numberOfStars={10}
+                        starDimension="20px"
+                        starSpacing="0px"
+                      />
+                    </div>
+                  </div>
+                  <p>{review.date}</p>
+                  <div className="review">{review.content}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="sliderControls">
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className="arrow"
+              onClick={() => handleReviewsMove("l")}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className="arrow"
+              onClick={() => handleReviewsMove("r")}
+            />
           </div>
         </div>
       </div>
