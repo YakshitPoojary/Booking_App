@@ -151,10 +151,11 @@
   cursor: not-allowed;
 }
 
+
 .headerImageContainer {
   position: absolute;
-  top: 450px; 
-  right: 150px;
+  top: 380px; 
+  right: 180px;
   width: 100%; 
   max-width: 1100px;
   height: 200px; 
@@ -177,10 +178,10 @@
   padding: 10px 0px;
   border-radius: 5px;
   position: relative;
-  top: 520px;
+  top: 450px;
   width: 100%; 
   max-width: 1024px;
-  margin-left: 275px;
+  margin-left: 250px;
   z-index: 2; 
   opacity: 1;
 }

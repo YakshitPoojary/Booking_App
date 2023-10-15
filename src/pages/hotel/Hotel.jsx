@@ -87,7 +87,7 @@ const Hotel = () => {
     {
       author: "Sug Ondese",
       date: "October 5, 2023",
-      content: "The location is perfect forforforforforforforforforforforfor exploring the city.",
+      content: "The location is perfect forforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforfor exploring the city.",
       rating: 8.7,
     },
     {
