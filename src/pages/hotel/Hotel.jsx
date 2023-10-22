@@ -8,6 +8,10 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import Icon from '@mdi/react';
+import { mdiTennis,mdiGolf,mdiHospitalMarker,mdiWifi ,mdiCoffee,mdiPool,
+          mdiFireExtinguisher, mdiAirport, mdiWashingMachine, 
+          mdiParking, mdiPaw } from '@mdi/js';
 import { useState } from "react";
 import StarRatings from 'react-star-ratings';
 
@@ -36,6 +40,21 @@ const Hotel = () => {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
     },
   ];
+
+  const midIcons = [
+    { icon: mdiTennis, label: 'Tennis' },
+    { icon: mdiGolf, label: 'Golf' },
+    { icon: mdiHospitalMarker, label: 'Hospital' },
+    { icon: mdiWifi, label: 'Wi-Fi' },
+    { icon: mdiCoffee, label: 'Coffee' },
+    { icon: mdiPool, label: 'Pool' },
+    { icon: mdiFireExtinguisher, label: 'Fire Extinguisher' },
+    { icon: mdiAirport, label: 'Airport Shuttle' },
+    { icon: mdiWashingMachine, label: 'Laundry' },
+    { icon: mdiParking, label: 'Parking' },
+    { icon: mdiPaw, label: 'Pets Allowed' },
+  ];
+  
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -67,40 +86,10 @@ const Hotel = () => {
 
   const reviews = [
     {
-      author: "Ben Dover",
+      author: "Mike Oxlong",
       date: "October 10, 2023",
       content: "Great hotel with excellent service!",
       rating: 8.1,
-    },
-    {
-      author: "Deez Nuts",
-      date: "October 5, 2023",
-      content: "The location is perfect for exploring the city.",
-      rating: 8.7,
-    },
-    {
-      author: "Ligma Balls",
-      date: "October 5, 2023",
-      content: "The location is perfect for exploring the city.",
-      rating: 8.7,
-    },
-    {
-      author: "Sug Ondese",
-      date: "October 5, 2023",
-      content: "The location is perfect forforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforforfor exploring the city.",
-      rating: 8.7,
-    },
-    {
-      author: "Mike Litoris",
-      date: "October 5, 2023",
-      content: "The location is perfect for exploring the city.",
-      rating: 8.7,
-    },
-    {
-      author: "Nee Ga",
-      date: "October 5, 2023",
-      content: "The location is perfect for exploring the city.",
-      rating: 8.7,
     },
     {
       author: "Mike Oxlong",
@@ -108,6 +97,30 @@ const Hotel = () => {
       content: "Great hotel with excellent service!",
       rating: 8.1,
     },
+    {
+      author: "Mike Oxlong",
+      date: "October 10, 2023",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      date: "October 10, 2023",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      date: "October 10, 2023",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      date: "October 10, 2023",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    }
   ];
 
   return (
@@ -186,6 +199,17 @@ const Hotel = () => {
           </div>
         </div>
         
+        <div className="hotelAmenities"> {/* Add this div for amenities */}
+          <h1>Amenities</h1>
+          <div className="amenitiesIcons">
+            {midIcons.map((amenity, index) => (
+              <div key={index} className="amenityItem">
+                <Icon path={amenity.icon} size={1} />
+                <span>{amenity.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
         
         <div className="hotelReviews">
           <h1 className="reviewsTitle">Reviews</h1>

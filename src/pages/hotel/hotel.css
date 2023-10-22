@@ -216,3 +216,32 @@
 .reviewsContainer::-webkit-scrollbar {
   display: none;
 }
+
+.hotelAmenities {
+  margin-top: 20px;
+  background-color: #ebf3ff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.hotelAmenities > h1 {
+  font-size: 18px;
+  color: #555;
+}
+
+.amenitiesIcons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.amenityItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+

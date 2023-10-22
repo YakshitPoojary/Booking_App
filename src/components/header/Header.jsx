@@ -89,7 +89,6 @@ const Header = ({ type }) => {
             <div className="image-search-container">
 
               <div className="headerImageContainer">
-
               </div>
               
               <div className="headerSearch">
