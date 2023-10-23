@@ -199,7 +199,7 @@ const Hotel = () => {
           </div>
         </div>
         
-        <div className="hotelAmenities"> {/* Add this div for amenities */}
+        <div className="hotelAmenities">
           <h1>Amenities</h1>
           <div className="amenitiesIcons">
             {midIcons.map((amenity, index) => (

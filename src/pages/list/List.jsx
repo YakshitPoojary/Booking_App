@@ -14,15 +14,26 @@ const List = () => {
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options || { adult: 1, children: 0, room: 1 });
+  const [options, setOptions] = useState(location.state.options);
+  const [minPrice, setMinPrice] = useState(location.state.minPrice);
+  const [maxPrice, setMaxPrice] = useState(location.state.maxPrice);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    localStorage.setItem("destination", destination);
+    localStorage.setItem("date", JSON.stringify(date));
+    localStorage.setItem("options", JSON.stringify(options));
+    localStorage.setItem("minPrice", minPrice);
+    localStorage.setItem("maxPrice", maxPrice);
+  }, [destination, date, options, minPrice, maxPrice]);
+
   const handleSearch = () => {
     navigate("/hotels", {
-      state: { destination, date, ...options },
+      state: { destination, date, options, minPrice, maxPrice },
     });
   };
+
   
   return (
     <div>
@@ -60,18 +71,29 @@ const List = () => {
             <div className="lsItem">
               <label>Options</label>
               <div className="lsOptions">
-              <div className="lsOptionItem">
+                
+                <div className="lsOptionItem">
                   <span className="lsOptionText">
                     Min price <small>per night</small>
                   </span>
-                  <input type="number" className="lsOptionInput" />
+                  <input
+                    type="number"
+                    className="lsOptionInput"
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                  />
                 </div>
 
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
                     Max price <small>per night</small>
                   </span>
-                  <input type="number" className="lsOptionInput" />
+                  <input
+                    type="number"
+                    className="lsOptionInput"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                  />
                 </div>
 
                 <div className="lsOptionItem">
