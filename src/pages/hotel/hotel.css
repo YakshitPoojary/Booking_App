@@ -28,7 +28,7 @@
 }
 
 .hotelTitle {
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .hotelAddress {
@@ -68,11 +68,12 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .hotelDetailsTexts {
-  flex: 3;
+  
 }
 
 .hotelDesc {
@@ -90,16 +91,19 @@
 }
 
 .hotelDetailsPrice > h1 {
-  font-size: 18px;
+  font-size: 25px;
   color: #555;
+  text-align: center;
 }
 
 .hotelDetailsPrice > span {
-  font-size: 14px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .hotelDetailsPrice > h2 {
   font-weight: 300;
+  text-align: center;
 }
 
 .hotelDetailsPrice > button {
@@ -218,7 +222,6 @@
 }
 
 .hotelAmenities {
-  margin-top: 20px;
   background-color: #ebf3ff;
   padding: 20px;
   border-radius: 10px;
@@ -254,8 +257,74 @@
 
   .amenityItem {
     flex: 1;
-    max-width: 100%; /* Ensure there are only 4 items in a line on smaller screens */
+    max-width: 100%;
   }
 }
 
+@media (max-width: 768px) {
+  .hotelDetails {
+    flex-direction: column;
+  }
+
+  .hotelAmenities {
+    flex: auto;
+  }
+}
+
+.hotelDetailsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+}
+
+
+.reviewForm{
+  background-color: #ebf3ff;
+  border-radius: 10px;
+  width: 1000px;
+  color: black;
+}
+
+.formGroup {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.formGroup input {
+  padding: 15px;
+  height: 15px;
+  font-size: 15px; 
+}
+
+.formGroup textarea {
+  padding: 15px;
+  height: 15px; 
+  font-size: 15px;
+}
+
+
+.formGroup textarea {
+  resize: none; 
+  height: 50px; 
+  overflow: auto; 
+}
+
+.reviewForm > button{
+  border: none;
+  padding: 10px 20px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+}
 

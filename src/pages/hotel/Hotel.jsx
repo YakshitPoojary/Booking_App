@@ -19,6 +19,41 @@ import StarRatings from 'react-star-ratings';
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [rating, setRating] = useState(0);
+  const [textReview, setTextReview] = useState("");
+  const [reviews, setReviews] = useState([
+    {
+      author: "Mike Oxlong",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    },
+    {
+      author: "Mike Oxlong",
+      content: "Great hotel with excellent service!",
+      rating: 8.1,
+    }
+  ]);
 
   const photos = [
     {
@@ -81,47 +116,25 @@ const Hotel = () => {
     } else {
       container.scrollLeft += 1000;
     }
-
   };
 
-  const reviews = [
-    {
-      author: "Mike Oxlong",
-      date: "October 10, 2023",
-      content: "Great hotel with excellent service!",
-      rating: 8.1,
-    },
-    {
-      author: "Mike Oxlong",
-      date: "October 10, 2023",
-      content: "Great hotel with excellent service!",
-      rating: 8.1,
-    },
-    {
-      author: "Mike Oxlong",
-      date: "October 10, 2023",
-      content: "Great hotel with excellent service!",
-      rating: 8.1,
-    },
-    {
-      author: "Mike Oxlong",
-      date: "October 10, 2023",
-      content: "Great hotel with excellent service!",
-      rating: 8.1,
-    },
-    {
-      author: "Mike Oxlong",
-      date: "October 10, 2023",
-      content: "Great hotel with excellent service!",
-      rating: 8.1,
-    },
-    {
-      author: "Mike Oxlong",
-      date: "October 10, 2023",
-      content: "Great hotel with excellent service!",
-      rating: 8.1,
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    if (userName && rating >= 0 && rating <= 10 && textReview) {
+      const newReview = {
+        author: userName,
+        rating: parseFloat(rating), 
+        content: textReview,
+      };
+      setReviews([...reviews, newReview]);
+      setUserName("");
+      setRating(0); 
+      setTextReview("");
+    } else {
+      alert("Please enter a valid rating between 0 and 10.");
     }
-  ];
+  };
+
 
   return (
     <div>
@@ -179,12 +192,29 @@ const Hotel = () => {
           </div>
 
           <div className="hotelDetails">
-            <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">Stay in the heart of City</h1>
-              <p className="hotelDesc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat odio a est ea non esse reprehenderit recusandae sunt, voluptates, maxime sapiente consequuntur quasi, eveniet cum accusamus nostrum tempore praesentium excepturi.
-              </p>
+
+            <div className="hotelDetailsColumn">
+
+              <div className="hotelDetailsTexts">
+                <h1 className="hotelTitle">Stay in the heart of City</h1>
+                <p className="hotelDesc">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat odio a est ea non esse reprehenderit recusandae sunt, voluptates, maxime sapiente consequuntur quasi, eveniet cum accusamus nostrum tempore praesentium excepturi.
+                </p>
+              </div>
+              
+              <div className="hotelAmenities">
+                <h1>Amenities</h1>
+                <div className="amenitiesIcons">
+                  {midIcons.map((amenity, index) => (
+                    <div key={index} className="amenityItem">
+                      <Icon path={amenity.icon} size={1} />
+                      <span>{amenity.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+
             <div className="hotelDetailsPrice">
               <h1>Perfect for a 9-night stay!</h1>
               <span>
@@ -196,20 +226,52 @@ const Hotel = () => {
               </h2>
               <button>Reserve or Book Now!</button>
             </div>
+
+
           </div>
         </div>
-        
-        <div className="hotelAmenities">
-          <h1>Amenities</h1>
-          <div className="amenitiesIcons">
-            {midIcons.map((amenity, index) => (
-              <div key={index} className="amenityItem">
-                <Icon path={amenity.icon} size={1} />
-                <span>{amenity.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+
+        <h1 className="reviewsTitle">Submit a Review</h1>
+          <form onSubmit={handleSubmitReview} className="reviewForm">
+            <div className="formGroup">
+              <label htmlFor="userName">User Name:</label>
+              <input
+                type="text"
+                id="userName"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label htmlFor="rating">Rating (0-10):</label>
+              <input
+                type="number"
+                id="rating"
+                value={rating}
+                onChange={(e) => {
+                  const newRating = parseFloat(e.target.value);
+                  if (!isNaN(newRating)) {
+              
+                    setRating(Math.min(10, Math.max(0, newRating))); 
+                  }
+                }}
+              />
+            </div>
+
+            <div className="formGroup textReview">
+              <label htmlFor="textReview">Review:</label>
+              <textarea
+                id="textReview"
+                value={textReview}
+                onChange={(e) => setTextReview(e.target.value)}
+              />
+            </div>
+            <button className="formGroup" type="submit">
+              Submit Review
+            </button>
+        </form>
+
         
         <div className="hotelReviews">
           <h1 className="reviewsTitle">Reviews</h1>

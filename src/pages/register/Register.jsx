@@ -8,7 +8,7 @@ const Register = () => {
       <Navbar />
       <section className="registration-section">
         <div className="registration-card">
-            <form>
+            <form className="login-form">
             <h3 className="registration-title">Register</h3>
               <div className="registration-form-group">
                 <div className="registration-form-group-inner">
