@@ -7,42 +7,35 @@ import Navbar from "../../components/navbar/Navbar";
 
 const Login = () => {
   const navigate = useNavigate()
-
   const handleRegister = () => {
     navigate("/register")
   }
 
   return (
-    <body>  
+    <div>
       <Navbar/>
-      <form className="login-form" method="post">
-        <div className="login-header">Login</div>
-
-        <div className="form-group">
-          <label className="form-label" htmlFor="username">Username</label>
-          <input type="text" name="username" id="username" className="form-control" />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label" htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" className="form-control" />
-        </div>
-
-        <div className="login-button">
-          <input className="btn btn-primary btn-md" type="submit" value="Login" />
-        </div>
-
-        <div className="login-links">
-          <div>
-            <button onClick={handleRegister}>Forgot Password</button>
+      <form action="">
+        <div className="Logincontainer">
+          <div className="header">
+            <div className="text">Login</div>
+            <div className="underline"></div>
           </div>
-          <div>
-            <button onClick={handleRegister}>Register</button>
+          <div className="inputs">
+            <div className="input">
+              <input type="email" placeholder="Email"/>
+            </div>
+            <div className="input">
+              <input type="password" placeholder="Password"/>
+            </div>
+          </div>
+
+          <div className="submit-container">
+            <div className="submit" onClick={handleRegister}>Sign up</div>
+            <div className="submit">Login</div>
           </div>
         </div>
-
       </form>
-    </body>
+    </div>
   );
 };
 

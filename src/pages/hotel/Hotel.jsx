@@ -14,6 +14,7 @@ import { mdiTennis,mdiGolf,mdiHospitalMarker,mdiWifi ,mdiCoffee,mdiPool,
           mdiParking, mdiPaw } from '@mdi/js';
 import { useState } from "react";
 import StarRatings from 'react-star-ratings';
+import { useNavigate } from "react-router-dom";
 
 
 const Hotel = () => {
@@ -55,6 +56,11 @@ const Hotel = () => {
     }
   ]);
 
+  const navigate = useNavigate()
+  const handleRegister = () => {
+    navigate("/register")
+  }
+
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -83,11 +89,7 @@ const Hotel = () => {
     { icon: mdiWifi, label: 'Wi-Fi' },
     { icon: mdiCoffee, label: 'Coffee' },
     { icon: mdiPool, label: 'Pool' },
-    { icon: mdiFireExtinguisher, label: 'Fire Extinguisher' },
-    { icon: mdiAirport, label: 'Airport Shuttle' },
-    { icon: mdiWashingMachine, label: 'Laundry' },
-    { icon: mdiParking, label: 'Parking' },
-    { icon: mdiPaw, label: 'Pets Allowed' },
+    
   ];
   
 
@@ -231,46 +233,6 @@ const Hotel = () => {
           </div>
         </div>
 
-        <h1 className="reviewsTitle">Submit a Review</h1>
-          <form onSubmit={handleSubmitReview} className="reviewForm">
-            <div className="formGroup">
-              <label htmlFor="userName">User Name:</label>
-              <input
-                type="text"
-                id="userName"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </div>
-
-            <div className="formGroup">
-              <label htmlFor="rating">Rating (0-10):</label>
-              <input
-                type="number"
-                id="rating"
-                value={rating}
-                onChange={(e) => {
-                  const newRating = parseFloat(e.target.value);
-                  if (!isNaN(newRating)) {
-              
-                    setRating(Math.min(10, Math.max(0, newRating))); 
-                  }
-                }}
-              />
-            </div>
-
-            <div className="formGroup textReview">
-              <label htmlFor="textReview">Review:</label>
-              <textarea
-                id="textReview"
-                value={textReview}
-                onChange={(e) => setTextReview(e.target.value)}
-              />
-            </div>
-            <button className="formGroup" type="submit">
-              Submit Review
-            </button>
-        </form>
 
         
         <div className="hotelReviews">
@@ -319,6 +281,55 @@ const Hotel = () => {
             />
           </div>
         </div>
+
+        <form onSubmit={handleSubmitReview}>
+          <div className="Reviewcontainer">
+            <div className="header">
+              <div className="text">Submit A Review</div>
+              <div className="underline"></div>
+            </div>
+            <div className="inputs">
+              <div className="input">
+                <input
+                  type="text"
+                  id="userName"
+                  
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  placeholder="Name"
+                />
+              </div>
+              <div className="input">
+                <input
+                  type="number"
+                  id="rating"
+                  value={rating}
+                  onChange={(e) => {
+                    const newRating = parseFloat(e.target.value);
+                    if (!isNaN(newRating)) {
+                
+                      setRating(Math.min(10, Math.max(0, newRating))); 
+                    }
+                  }}
+                  placeholder="Rating out of 10"
+                />
+              </div>
+              <div className="input">
+                <input
+                  id="textReview"
+                  value={textReview}
+                  onChange={(e) => setTextReview(e.target.value)}
+                  placeholder = "Review"
+                />
+              </div>
+            </div>
+
+            <div className="submit-container">
+              <div className="submit">Submit</div>
+            </div>
+          </div>
+        </form>
+
       </div>
       
     </div>

@@ -1,74 +1,101 @@
-/* register.css */
-
-.registration-section {
-  height: 100vh;
-}
-
-.login-form{
-  height: 500px;
-  padding: 45px 35px;
-  margin-top: 40px;
-}
-
-.registration-title {
-  margin-bottom: 2rem;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.registration-form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem;
-}
-
-.registration-form-group-inner {
+.container{
   display: flex;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 50px;
+  background: #fff;
+  padding-bottom: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 800px;
+  height: 600px;
+  border-radius: 50px;
 }
 
-.registration-input {
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
   width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  outline: none;
+  margin-top: 30px;
 }
 
-.registration-select {
-  flex: 1;
-  margin-right: 0.5rem;
+.text{
+  color: #3c009d;
+  font-size: 35px;
+  font-weight: 700;
 }
 
-.registration-select-input {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  outline: none;
+.underline{
+  width: 61px;
+  height: 6px;
+  background: #3c009d;
+  border-radius: 9px;
 }
-  
-.registration-button {
+
+.inputs{
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 480px;
+  height: 60px;
+  background: #eaeaea;
+  border-radius: 6px;
+}
+
+.input input{
+  height: 50px;
+  width: 400px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #797979;
+  font-size: 19px;
+  padding: 20px;
+}
+
+.submit-container{
+  display: flex;
+  gap: 30px;
+  margin: 40px auto;
+}
+
+.submit{
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
-
-}
-
-.btn-primary {
-  background-color: #007bff;
+  align-items: center;
+  width: 220px;
+  height: 59px;
   color: #fff;
-  width: 200px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
-  font-size: 1.2rem; /* You can adjust the font size if needed */
+  background: #4c00b4;
+  border-radius: 50px;
+  font-size: 19px;
+  font-weight: 700;
   cursor: pointer;
-  border-radius: 10px;
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+.input input[type="number"] {
+  height: 50px;
+  width: 400px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #797979;
+  font-size: 19px;
+  padding: 20px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.input input[type="number"]::-webkit-inner-spin-button,
+.input input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
 }

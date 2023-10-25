@@ -1,85 +1,48 @@
 import React from "react";
 import "./register.css";
 import Navbar from "../../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
+  const navigate = useNavigate()
+  const handleRegister = () => {
+    navigate("/login")
+  }
+
   return (
     <div>
       <Navbar />
-      <section className="registration-section">
-        <div className="registration-card">
-            <form className="login-form">
-            <h3 className="registration-title">Register</h3>
-              <div className="registration-form-group">
-                <div className="registration-form-group-inner">
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    className="registration-input"
-                    placeholder="Name"
-                  />
-                </div>
-              </div>
+      <form action="">
+        <div className="container">
+          <div className="header">
+            <div className="text">Sign Up</div>
+            <div className="underline"></div>
+          </div>
+          <div className="inputs">
+            <div className="input">
+              <input type="text" placeholder="Name"/>
+            </div>
+            <div className="input">
+              <input type="email" placeholder="Email"/>
+            </div>
+            <div className="input">
+              <input type="password" placeholder="Password"/>
+            </div>
+            <div className="input">
+              <input type="text" placeholder="Country"/>
+            </div>
+            <div className="input">
+              <input type="number" placeholder="Phone Number"/>
+            </div>
+          </div>
 
-              <div className="registration-form-group">
-                <div className="registration-form-group-inner">
-                  <input
-                    type="text"
-                    className="registration-input"
-                    id="email"
-                    name="email"
-                    pattern="^[a-zA-Z0-9._%+-]+@.*somaiya\.edu$"
-                    title="Invalid email format"
-                    placeholder="Email Id"
-                  />
-                </div>
-              </div>
-
-              <div className="registration-form-group">
-                <div className="registration-form-group-inner">
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    className="registration-input"
-                    placeholder="Username"
-                  />
-                </div>
-              </div>
-
-              <div className="registration-form-group">
-                <div className="registration-form-group-inner">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    title="Password must be at least 8 characters long"
-                    className="registration-input"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="registration-form-group-inner">
-                  <input
-                    type="password"
-                    id="cpassword"
-                    name="cpassword"
-                    className="registration-input"
-                    placeholder="Confirm Password"
-                  />
-                </div>
-                <div className="registration-button">
-                <input
-                  className="btn btn-primary btn-md"
-                  type="submit"
-                  value="Submit"
-                />
-              </div>
-              </div>
-            </form>
-
+          <div className="submit-container">
+            <div className="submit" >Sign up</div>
+            <div className="submit" onClick={handleRegister}>Login</div>
+          </div>
         </div>
-      </section>
+      </form>
     </div>
   );
 };

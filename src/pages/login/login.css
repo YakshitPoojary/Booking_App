@@ -1,106 +1,83 @@
-.login-form{
-  height: 450px;
-  width: 450px;
-  background-color: rgba(255,255,255,0.13);
-  position: absolute;
-  transform: translate(-50%,-50%);
-  top: 50%;
-  left: 50%;
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255,255,255,0.1);
-  box-shadow: 0 0 40px rgba(8,7,16,0.6);
-  padding: 0px 35px;
-  background-color: aliceblue;
+.Logincontainer{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 100px;
+  background: #fff;
+  padding-bottom: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  width: 600px;
+  height: 420px;
+  border-radius: 50px;
 }
 
-form *{
-  font-family: 'Poppins',sans-serif;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-  outline: none;
-  border: none;
-  color: #080710;
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  margin-top: 30px;
 }
 
-button{
-  cursor: pointer;
+.text{
+  color: #3c009d;
+  font-size: 35px;
+  font-weight: 700;
 }
 
-.login-form {
-  margin-top: 1rem;
-  text-align: center;
+.underline{
+  width: 61px;
+  height: 6px;
+  background: #3c009d;
+  border-radius: 9px;
 }
 
-.login-header {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+.inputs{
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.form-group {
-  margin-bottom: 1rem;
+.input{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 480px;
+  height: 60px;
+  background: #eaeaea;
+  border-radius: 6px;
 }
 
-.form-label {
-  display: block;
-  font-weight: bold;
-}
-
-.form-control {
-  width: 90%;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
-  outline: none;
-  margin-top: 15px;
-}
-
-.login-button {
-  margin-top: 1.25rem;
-  padding: 10px;  
-}
-
-/* Increase the size of the login button */
-.login-button input[type="submit"] {
-  width: 150px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
-  font-size: 1.2rem; /* You can adjust the font size if needed */
-  cursor: pointer;
-}
-
-
-.login-links {
-  margin-top: 20px;
-}
-
-.login-links a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.login-links a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.login-links button {
-  background: none;
+.input input{
+  height: 50px;
+  width: 400px;
+  background: transparent;
   border: none;
   outline: none;
-  color: #007bff;
+  color: #797979;
+  font-size: 19px;
+  padding: 20px;
+}
+
+.submit-container{
+  display: flex;
+  gap: 30px;
+  margin: 40px auto;
+}
+
+.submit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 59px;
+  color: #fff;
+  background: #4c00b4;
+  border-radius: 50px;
+  font-size: 19px;
+  font-weight: 700;
   cursor: pointer;
-  padding: 0;
-  font-size: 1rem;
 }
 
-.login-links button:hover {
-  text-decoration: underline;
-}
-
-.login-links div {
-  display: block; 
-  margin-top: 10px;
-}

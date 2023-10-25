@@ -13,7 +13,6 @@ const Navbar = () => {
   };
 
   const handleLogoClick = () => {
-    // Navigate to the home page when the logo is clicked
     navigate("/");
   };
 
