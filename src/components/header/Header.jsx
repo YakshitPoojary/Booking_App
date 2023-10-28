@@ -6,11 +6,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./header.css";
 import { DateRange } from "react-date-range";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "react-date-range/dist/styles.css"; 
 import "react-date-range/dist/theme/default.css"; 
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../../context/SearchContext";
+import { AuthContext } from "../../context/AuthContext";
+
 
 import image2 from '../images/hotel_2.2.jpg';
 import image1 from '../images/hotel_1.1.jpg';
@@ -21,6 +24,13 @@ const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [dates, setDates] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
   
   const images = [
     `url('${image1}') no-repeat`,
@@ -29,13 +39,6 @@ const Header = ({ type }) => {
     `url('${image4}') no-repeat`,
   ];
 
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
   
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
@@ -45,6 +48,8 @@ const Header = ({ type }) => {
   });
   
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
   
   const handleOption = (name, operation) => {
     setOptions((prev) => {
@@ -55,12 +60,10 @@ const Header = ({ type }) => {
     });
   };
 
+  const { dispatch } = useContext(SearchContext);
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
-  };
-  
-  const handleRegister = () => {
-    navigate("/register")
+    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    navigate("/hotels", { state: { destination, dates, options } });
   };
 
   useEffect(() => {
@@ -78,10 +81,7 @@ const Header = ({ type }) => {
 
   return (
     <div className="header">
-      <div
-        className={
-          type === "list" ? "headerContainer listMode" : "headerContainer"
-        }
+      <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}
         style={type !== "list" ? { background: images[currentImageIndex] } : {}}
       >
         {type !== "list" && (
@@ -107,16 +107,16 @@ const Header = ({ type }) => {
                   <span
                     onClick={() => setOpenDate(!openDate)}
                     className="headerSearchText"
-                  >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                    date[0].endDate,
+                  >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
+                    dates[0].endDate,
                     "MM/dd/yyyy"
                   )}`}</span>
                   {openDate && (
                     <DateRange
                       editableDateInputs={true}
-                      onChange={(item) => setDate([item.selection])}
+                      onChange={(item) => setDates([item.selection])}
                       moveRangeOnFirstSelection={false}
-                      ranges={date}
+                      ranges={dates}
                       className="date"
                       minDate={new Date()}
                     />

@@ -1,20 +1,38 @@
 import "./navbar.css";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import {useState} from "react";
 
 const Navbar = () => {
-  const navigate = useNavigate();
+  const {user} = useContext(AuthContext);
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate()
 
   const handleRegister = () => {
-    navigate("/register");
-  };
+    if(!user){
+        navigate("/register")
+    }
+  }
 
   const handleClick = () => {
-    navigate("/login");
+      if(user){
+          setOpenModal(true)
+      } else {
+          navigate("/login")
+      }
   };
 
   const handleLogoClick = () => {
     navigate("/");
   };
+
+  const logOut = () => {
+    setOpenModal(false)
+    localStorage.removeItem('user')
+    document.location.reload(true)
+  }
 
   return (
     <div className="frame">
@@ -28,14 +46,22 @@ const Navbar = () => {
         </div>
       </a>
 
-      <div className="div-2">
+      {user ? <button className="div-wrapper" onClick={logOut}><div className="text-wrapper-4">Log Out {user.username}</div></button> : 
+      (
+        <div className="div-2">
+            <button className="div-wrapper" onClick={handleRegister}><div className="text-wrapper-4">Register</div></button>
+            <button className="div-wrapper" onClick={handleClick}><div className="text-wrapper-4">Login</div></button>
+        </div>
+      )}
+
+      {/* <div className="div-2">
         <button className="div-wrapper" onClick={handleRegister}>
           <div className="text-wrapper-4">Sign Up</div>
         </button>
         <button className="div-wrapper" onClick={handleClick}>
           <div className="text-wrapper-4">Login</div>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
