@@ -12,6 +12,11 @@ const Reserve = ({ setOpen, hotelId }) => {
     const [selectedRooms, setSelectedRooms] = useState([]);
     const { data, loading, error } = useFetch(`https://bookkaro.onrender.com/hotels/room/${hotelId}`);
     const { dates } = useContext(SearchContext);
+    const storedStartDate = localStorage.getItem('startDate');
+    const storedEndDate = localStorage.getItem('endDate');
+
+    const startDate = new Date(storedStartDate); 
+    const endDate = new Date(storedEndDate);
 
     const getDatesInRange = (startDate, endDate) => {
         const start = new Date(startDate);
@@ -28,7 +33,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     
         return dates;
       };
-    const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+    const alldates = getDatesInRange(startDate, endDate);
 
     const isAvailable = (roomNumber) => {
         const isFound = roomNumber.unavailableDates.some(date=> 
@@ -78,7 +83,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                     className="rClose"
                     onClick={() => setOpen(false)}
                 />
-                <span>Select your rooms:</span>
+                <h3>Select your rooms:</h3>
                 {data.map((item) => (
                     <div className="rItem" key={item._id}>
                         <div className="rItemInfo">

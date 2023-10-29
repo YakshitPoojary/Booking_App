@@ -29,10 +29,11 @@
 
 .hotelTitle {
   font-size: 30px;
+  text-align: center;
 }
 
 .hotelAddress {
-  font-size: 12px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -40,7 +41,8 @@
 
 .hotelDistance {
   color: #0071c2;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .hotelPriceHighlight {
@@ -52,6 +54,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .hotelImgWrapper {
@@ -74,7 +77,7 @@
 
 
 .hotelDesc {
-  font-size: 14px;
+  font-size: 17px;
   margin-top: 20px;
 }
 
@@ -176,7 +179,7 @@
   border-radius: 10px;
   margin-right: 30px;
   margin-left: 10px;
-  height: 200px;
+  min-height: 200px;
   width: 300px;
   flex-wrap: wrap;
 }
@@ -200,14 +203,17 @@
   overflow-wrap: break-word;
 }
 
+.review{
+  width: 250px;
+}
 
 .reviewsContainer {
   display: flex;
   overflow-x: scroll;
   scrollbar-width: none; 
   -ms-overflow-style: none; 
-  margin: 0 10px; 
-  padding: 10px 0; 
+  margin: 0 -20px; 
+  padding: 30px 30px; 
   white-space: nowrap;
   width: 100%;
   max-width: 1500px;
@@ -284,9 +290,9 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 40px;
   background: #fff;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   width: 600px;
   border-radius: 50px;
@@ -376,6 +382,33 @@
 }
 
 .bs{
-  width: 600px;
+  width: 700px;
+  height: 500px;
   padding-left: 20px;
+  background-image: url("https://promos.makemytrip.com/Hotels_product/Luxe/mmtLuxeDT/images/Hilly.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
 }
+
+
+.bs > h3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;  
+  font-size: 30px;
+}
+
+.bs > h4{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;  
+  font-size: 25px;
+}
+

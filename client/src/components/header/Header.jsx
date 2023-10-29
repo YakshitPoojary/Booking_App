@@ -27,6 +27,8 @@ const Header = ({type}) => {
         key: 'selection',
         }
     ]);
+
+
     const [openOptions, setOpenOptions] = useState(false);
     const [options, setOptions] = useState({
         adult:1,
@@ -56,6 +58,8 @@ const Header = ({type}) => {
     const { dispatch } = useContext(SearchContext);
 
     const handleSearch = () => {
+        localStorage.setItem('startDate', dates[0].startDate.toISOString());
+        localStorage.setItem('endDate', dates[0].endDate.toISOString());
         dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
         navigate("/hotels", { state: { destination, dates, options } });
     };

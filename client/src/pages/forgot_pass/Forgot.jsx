@@ -67,7 +67,7 @@ const Register = () => {
                 </div>
 
                 <div className="submit-container">
-                    <button className="submit" type="submit" onClick={handleClick}>Register</button>
+                    <button className="submit" type="submit" onClick={handleClick}>Change</button>
                 </div>
             </div>
         </div>

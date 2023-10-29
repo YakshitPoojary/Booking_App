@@ -43,7 +43,7 @@ const Register = () => {
             console.log(err)
             alert("Error, please fill each field");
           }
-        };
+    };
 
 
     return (

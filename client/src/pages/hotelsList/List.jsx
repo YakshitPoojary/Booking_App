@@ -19,6 +19,18 @@ const List = () => {
     const [min, setMin] = useState(undefined);
     const [max, setMax] = useState(undefined);
 
+    const storedStartDate = localStorage.getItem('startDate');
+    const storedEndDate = localStorage.getItem('endDate');
+
+    if (storedStartDate && storedEndDate) {
+      const startDate = new Date(storedStartDate); 
+      const endDate = new Date(storedEndDate);
+      console.log(startDate, endDate)
+    } else {
+      console.log("no date");
+    }
+
+
     const { data, loading, error, reFetch } = useFetch(`https://bookkaro.onrender.com/hotels?city=${destination}&min=${min || 0}&max=${max || 1000}`);
     
     const handleClick = () => {
