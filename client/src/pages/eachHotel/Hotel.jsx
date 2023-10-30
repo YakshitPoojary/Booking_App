@@ -294,7 +294,7 @@ const Hotel = () => {
 
                                 <h1>Perfect for a {days}-night stay!</h1>
                                 <h2>
-                                    <b>${multiResult}</b> ({days} nights)
+                                    <b>${parseInt(multiResult,10)}</b> ({days} nights)
                                 </h2>
                                 <button onClick={handleClick}>Reserve or Book Now!</button>
 

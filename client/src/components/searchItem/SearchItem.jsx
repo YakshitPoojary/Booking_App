@@ -6,8 +6,8 @@ const SearchItem = ({item}) => {
 
     const endMonth = parseInt(localStorage.getItem('endMonth'),10);
     const index = endMonth - 1;
-    console.log(index);
-    console.log(item);
+    // console.log(index);
+    // console.log(item);
     return (
         <div className="searchItem">
            <img

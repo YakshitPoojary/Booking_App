@@ -2,7 +2,7 @@ import "./list.css"
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import format from "date-fns/format";
 import { DateRange } from 'react-date-range';
 import SearchItem from "../../components/searchItem/SearchItem";
@@ -27,13 +27,34 @@ const List = () => {
     if (storedStartDate && storedEndDate) {
       const startDate = new Date(storedStartDate); 
       const endDate = new Date(storedEndDate);
-      console.log(startDate, endDate)
+      // console.log(startDate, endDate)
     } else {
-      console.log("no date");
+      // console.log("no date");
     }
 
 
+    const [filteredData, setFilteredData] = useState([]);
+    const [loadingFilteredData, setLoadingFilteredData] = useState(false);
+    
+    
     const { data, loading, error, reFetch } = useFetch(`https://bookkaro.onrender.com/hotels?city=${destination}&min=${min || 0}&max=${max || 1000}`);
+    
+    useEffect(() => {
+      if (data.length > 0) {
+          const filteredHotels = data.filter((item) => {
+          const calculatedPrice = item.cheapestPrice * item.multiplier[index];
+          console.log("Calculated Price: ", calculatedPrice)
+          return (
+            (min == undefined || calculatedPrice >= min) &&
+            (max == undefined || calculatedPrice <= max)
+          );
+        });
+  
+        setFilteredData(filteredHotels);
+      }
+    }, [data, min, max, index]);
+
+    console.log("filteredData:", filteredData);
     
     const handleClick = () => {
         reFetch();
@@ -48,24 +69,6 @@ const List = () => {
             <div className="listWrapper">
               <div className="listSearch">
                 <h1 className="lsTitle">Search</h1>
-                {/* <div className="lsItem">
-                  <label>Destination</label>
-                  <input placeholder={destination} type="text" />
-                </div>
-                <div className="lsItem">
-                  <label>Check-in Date</label>
-                  <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                    dates[0].startDate,
-                    "MM/dd/yyyy"
-                  )} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
-                  {openDate && (
-                    <DateRange
-                      onChange={(item) => setDates([item.selection])}
-                      minDate={new Date()}
-                      ranges={dates}
-                    />
-                  )}
-                </div> */}
                 <div className="lsItem">
                   <label>Options</label>
                   <div className="lsOptions">
@@ -117,8 +120,8 @@ const List = () => {
               <div className="listResult">
                 {loading ? ("loading") : (
                     <>
-                        {data.map((item) => (
-                        <SearchItem item={item} key={item._id} />
+                        {filteredData.map((item) => (
+                          <SearchItem item={item} key={item._id} />
                         ))}
                     </>
                 )}
