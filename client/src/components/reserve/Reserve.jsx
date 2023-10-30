@@ -79,7 +79,7 @@ const Reserve = ({ setOpen, hotelId, price }) => {
 
 
     return (
-        <PayPalScriptProvider options={{ "client-id": "YOUR_PAYPAL_CLIENT_ID" }}>
+        <PayPalScriptProvider options={{ "client-id": "AUviz0J32U7rwFdr-JaqKW5nTaNQxzixE78MUA7VxJd3CnDq9ofS0GpBwBtUWqfMHHeKm7MfgeG6B46q" }}>
             <div className="reserve">
                 <div className="rContainer">
                     <FontAwesomeIcon
