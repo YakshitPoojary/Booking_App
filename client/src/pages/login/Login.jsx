@@ -34,27 +34,22 @@ const Login = () => {
     e.preventDefault();
     console.log(credentials.email, credentials.password)
     if (credentials.email === undefined || credentials.password === undefined) {
-      // alert("Error, please fill each field")
       setErr("Error, please fill each field")
     }
     else if (credentials.password.trim() === '') {
-      // alert("Password Field Is Empty")
       setErr("Password Field Is Empty")
     }
     else if (!isValidEmail(credentials.email)) {
-      // alert("Error, please put email in correct format")
       setErr("Error, please put email in correct format")
     }
     else {
       dispatch({ type: "LOGIN_START" });
       try {
-        console.log(credentials.email, credentials.password)
         const res = await axios.post("https://bookkaro.onrender.com/auth/login", credentials);
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
         navigate("/")
       } catch (err) {
         dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
-        // alert(err.response.data.message)
         setErr(err.response.data.message)
       }
     }
