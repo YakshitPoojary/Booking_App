@@ -88,20 +88,20 @@ const Hotel = () => {
         switch (amenity) {
             case "pool":
                 return <Icon path={mdiPool} size={1} />;
-          case "wifi":
+            case "wifi":
               return <Icon path={mdiWifi} size={1} />;
-              case "dumbbell":
-                  return <Icon path={mdiDumbbell} size={1} />;
-                  case "silverware-fork-knife":
-                      return <Icon path={mdiSilverwareForkKnife} size={1} />;
-                      case "spa":
-            return <Icon path={mdiSpa} size={1} />;
+            case "dumbbell":
+                return <Icon path={mdiDumbbell} size={1} />;
+            case "silverware-fork-knife":
+                return <Icon path={mdiSilverwareForkKnife} size={1} />;
+            case "spa":
+                return <Icon path={mdiSpa} size={1} />;
             case "breakfast":
                 return <Icon path={mdiCoffee} size={1} />;
-                
-                default:
-                    return null;
-                }
+            
+            default:
+                return null;
+        }
     }
     
       
@@ -136,13 +136,9 @@ const Hotel = () => {
     const startDate = new Date(storedStartDate); 
     const endDate = new Date(storedEndDate);
     console.log("Data ", data.multiplier);
-    
-
-    // const monthMultiplier = data.multiplier[index];
-    
+        
     console.log("Options room: ", optionsRoom);
     console.log("End Month: ", typeof(endMonth), endMonth);
-    // console.log("Month multiplier ",monthMultiplier)
     console.log("Start and end dates: ", startDate," and ", endDate)
     console.log("Stored Start and end dates: ", storedStartDate," and ", storedEndDate)
 
@@ -166,7 +162,35 @@ const Hotel = () => {
         setSlideNumber(i);
         setOpen(true);
     } 
-    
+    const [multiResult, setMultiResult] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const multi = await handleMulti();
+            setMultiResult(multi);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setError(error);
+        }
+        };
+
+        fetchData();
+    }, [id]);
+
+    const handleMulti = async () => {
+        try {
+        const response = await axios.get(`https://bookkaro.onrender.com/hotels/find/${id}`);
+        const hotelData = response.data;
+        const result = days * hotelData.cheapestPrice * optionsRoom * hotelData.multiplier[index];
+        return result;
+        } 
+        catch (error) {
+        console.error('Error calculating result:', error);
+        return null;
+        }
+    };
+        
     const handleMove = (direction) => {
         let newSlideNumber;
         
@@ -270,7 +294,7 @@ const Hotel = () => {
 
                                 <h1>Perfect for a {days}-night stay!</h1>
                                 <h2>
-                                    <b>${days * data.cheapestPrice * optionsRoom* data.multiplier[index]}</b> ({days} nights)
+                                    <b>${multiResult}</b> ({days} nights)
                                 </h2>
                                 <button onClick={handleClick}>Reserve or Book Now!</button>
 
