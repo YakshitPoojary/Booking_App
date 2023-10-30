@@ -60,6 +60,7 @@ const Header = ({type}) => {
     const handleSearch = () => {
         localStorage.setItem('startDate', dates[0].startDate.toISOString());
         localStorage.setItem('endDate', dates[0].endDate.toISOString());
+        
         dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
         navigate("/hotels", { state: { destination, dates, options } });
     };

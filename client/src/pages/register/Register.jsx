@@ -12,9 +12,13 @@ const Register = () => {
     const [phone, setPhone] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [err, setErr] = useState(null);
+    const [enteredEmail, setEnteredemail] = useState(null);
+
+    const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 
     const handleEmail = (e) => {
-        setEmail(e.target.value);
+        setEnteredemail(e.target.value)
+        setEmail(enteredEmail);
         setSubmitted(false);
     };
     
@@ -30,18 +34,24 @@ const Register = () => {
 
     const handleClick = async e => {
         e.preventDefault()
-        try {
-            const newUser = {
-                email, phone, password
-            };
-      
-            await axios.post("https://bookkaro.onrender.com/auth/register", newUser);
-            setSubmitted(true);
-            alert("User created!🎉");
-            window.location.assign("/login");
-        } catch (err) {
-            console.log(err);
-            setErr("Error, please fill each field"); // Set the err state
+        if (!emailPattern.test(enteredEmail)) {
+            setErr("Please enter a valid email address");
+        } 
+        else{
+            try {
+                
+                const newUser = {
+                    email, phone, password
+                };
+          
+                await axios.post("https://bookkaro.onrender.com/auth/register", newUser);
+                setSubmitted(true);
+                alert("User created!🎉");
+                window.location.assign("/login");
+            } catch (err) {
+                console.log(err);
+                setErr("Error, please fill each field"); // Set the err state
+            }
         }
     };
 
@@ -55,27 +65,29 @@ const Register = () => {
                     </Alert>
                 </Stack>
             )}
-            <div className="container">
-                <div className="header">
-                    <div className="text">Sign Up</div>
-                    <div className="underline"></div>
-                </div>
-                <div className="inputs">
-                    <div className="input">
-                        <input type="email" onChange={handleEmail} placeholder="Email" id="email"/>
+            <form onSubmit={handleClick}>
+                <div className="container">
+                    <div className="header">
+                        <div className="text">Sign Up</div>
+                        <div className="underline"></div>
                     </div>
-                    <div className="input">
-                        <input type="text" onChange={handlePhone} placeholder="Mobile Number" id="phone"/>
+                    <div className="inputs">
+                        <div className="input">
+                            <input type="email" onChange={handleEmail} placeholder="Email" id="email"/>
+                        </div>
+                        <div className="input">
+                            <input type="text" onChange={handlePhone} placeholder="Mobile Number" id="phone"/>
+                        </div>
+                        <div className="input">
+                            <input type="password" onChange={handlePassword} placeholder="Password" id="password"/>
+                        </div>
                     </div>
-                    <div className="input">
-                        <input type="password" onChange={handlePassword} placeholder="Password" id="password"/>
-                    </div>
-                </div>
 
-                <div className="submit-container">
-                    <button className="submit" type="submit" onClick={handleClick}>Register</button>
+                    <div className="submit-container">
+                        <button className="submit" type="submit" onClick={handleClick}>Register</button>
+                    </div>
                 </div>
-            </div>
+            </form>
 
         </div>
     );
