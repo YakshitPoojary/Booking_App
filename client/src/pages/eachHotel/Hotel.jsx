@@ -2,10 +2,10 @@ import "./hotel.css";
 import Navbar from "../../components/navbar/Navbar"
 import Header from "../../components/header/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faLocationDot} from "@fortawesome/free-solid-svg-icons"
-import {faCircleXmark} from "@fortawesome/free-solid-svg-icons"
-import {faCircleArrowLeft} from "@fortawesome/free-solid-svg-icons"
-import {faCircleArrowRight} from "@fortawesome/free-solid-svg-icons"
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons"
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import useFetch from "../../hooks/useFetch";
@@ -15,7 +15,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
 import StarRatings from 'react-star-ratings';
 import Icon from "@mdi/react";
-import { mdiPool,mdiWifi, mdiDumbbell, mdiSilverwareForkKnife, mdiSpa, mdiCoffee} from '@mdi/js'
+import { mdiPool, mdiWifi, mdiDumbbell, mdiSilverwareForkKnife, mdiSpa, mdiCoffee } from '@mdi/js'
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
@@ -23,73 +23,73 @@ import Stack from '@mui/material/Stack';
 const Hotel = () => {
     const location = useLocation();
     const id = location.pathname.split("/")[2];
-    const[slideNumber, setSlideNumber]=useState(0);
-    const[open, setOpen]=useState(false);
+    const [slideNumber, setSlideNumber] = useState(0);
+    const [open, setOpen] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [name, setName] = useState('');
     const [rating, setRating] = useState('');
     const [text, setReview] = useState('');
     const [submitted, setSubmitted] = useState(false);
-    const [err,setError] = useState(null);
+    const [err, setError] = useState(null);
 
 
     const { data, loading, error } = useFetch(`https://bookkaro.onrender.com/hotels/find/${id}`)
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [commentsArray, setCommentsArray] = useState([]);
     const amenities = data.amenities;
     const handleName = (e) => {
         setName(e.target.value);
         setSubmitted(false);
     };
-    
+
     const handleRating = (e) => {
         const newRating = parseFloat(e.target.value);
         if (!isNaN(newRating)) {
-            setRating(Math.min(5, Math.max(0, newRating))); 
+            setRating(Math.min(5, Math.max(0, newRating)));
         }
         setSubmitted(false);
-    }; 
-    
+    };
+
     const handleReview = (e) => {
         setReview(e.target.value)
         setSubmitted(false);
     }
-    
+
     const handleSendReviews = async e => {
         e.preventDefault()
 
-        if(!user){
+        if (!user) {
             setError("Login To Send Reviews");
             console.log(err);
         }
-        else{
-            try{
+        else {
+            try {
                 const newReview = {
-                    name: name, 
-                    rating: rating, 
-                    text: text, 
-                    email: user.email,    
+                    name: name,
+                    rating: rating,
+                    text: text,
+                    email: user.email,
                 };
-                
+
                 await axios.post(`https://bookkaro.onrender.com/hotels/review/${id}`, newReview)
                 setSubmitted(true)
                 alert("Review Submitted");
                 window.location.assign(`/hotels/${id}`);
-                
-            }catch(err){
+
+            } catch (err) {
                 console.log(err)
                 setError(err.response.data.message);
             }
         }
     };
-    
+
 
     function getAmenityIcon(amenity) {
         switch (amenity) {
             case "pool":
                 return <Icon path={mdiPool} size={1} />;
             case "wifi":
-              return <Icon path={mdiWifi} size={1} />;
+                return <Icon path={mdiWifi} size={1} />;
             case "dumbbell":
                 return <Icon path={mdiDumbbell} size={1} />;
             case "silverware-fork-knife":
@@ -98,14 +98,14 @@ const Hotel = () => {
                 return <Icon path={mdiSpa} size={1} />;
             case "breakfast":
                 return <Icon path={mdiCoffee} size={1} />;
-            
+
             default:
                 return null;
         }
     }
-    
-      
-    
+
+
+
     useEffect(() => {
         if (data.comments && Array.isArray(data.comments)) {
             setCommentsArray(data.comments.map((comment) => {
@@ -118,31 +118,31 @@ const Hotel = () => {
             }));
         }
     }, [data]);
-    
-    
-    
+
+
+
     const navigate = useNavigate()
 
     const { dates, options } = useContext(SearchContext);
-    console.log("Dates ",dates);
+    console.log("Dates ", dates);
     const storedStartDate = localStorage.getItem('startDate');
     const storedEndDate = localStorage.getItem('endDate');
     const optionsRoom = localStorage.getItem('optionsRoom');
-    const endMonth = parseInt(localStorage.getItem('endMonth'),10);
+    const endMonth = parseInt(localStorage.getItem('endMonth'), 10);
     const index = endMonth - 1;
     console.log("Index : ", index);
 
-    
-    const startDate = new Date(storedStartDate); 
+
+    const startDate = new Date(storedStartDate);
     const endDate = new Date(storedEndDate);
     console.log("Data ", data.multiplier);
-        
-    console.log("Options room: ", optionsRoom);
-    console.log("End Month: ", typeof(endMonth), endMonth);
-    console.log("Start and end dates: ", startDate," and ", endDate)
-    console.log("Stored Start and end dates: ", storedStartDate," and ", storedEndDate)
 
-        
+    console.log("Options room: ", optionsRoom);
+    console.log("End Month: ", typeof (endMonth), endMonth);
+    console.log("Start and end dates: ", startDate, " and ", endDate)
+    console.log("Stored Start and end dates: ", storedStartDate, " and ", storedEndDate)
+
+
     const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
     function dayDifference(date1, date2) {
         const timeDiff = Math.abs(date2.getTime() - date1.getTime());
@@ -151,28 +151,28 @@ const Hotel = () => {
     }
 
     let days = 0;
-    
+
     if (storedEndDate && storedStartDate) {
         console.log("Start and end dates ", startDate, endDate)
         days = dayDifference(endDate, startDate);
         console.log("Days ", days);
     }
 
-    const handleOpen = (i)=> {
+    const handleOpen = (i) => {
         setSlideNumber(i);
         setOpen(true);
-    } 
+    }
     const [multiResult, setMultiResult] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-        try {
-            const multi = await handleMulti();
-            setMultiResult(multi);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            setError(error);
-        }
+            try {
+                const multi = await handleMulti();
+                setMultiResult(multi);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                setError(error);
+            }
         };
 
         fetchData();
@@ -180,32 +180,32 @@ const Hotel = () => {
 
     const handleMulti = async () => {
         try {
-        const response = await axios.get(`https://bookkaro.onrender.com/hotels/find/${id}`);
-        const hotelData = response.data;
-        const result = days * hotelData.cheapestPrice * optionsRoom * hotelData.multiplier[index];
-        return result;
-        } 
+            const response = await axios.get(`https://bookkaro.onrender.com/hotels/find/${id}`);
+            const hotelData = response.data;
+            const result = days * hotelData.cheapestPrice * optionsRoom * hotelData.multiplier[index];
+            return result;
+        }
         catch (error) {
-        console.error('Error calculating result:', error);
-        return null;
+            console.error('Error calculating result:', error);
+            return null;
         }
     };
-        
+
     const handleMove = (direction) => {
         let newSlideNumber;
-        
-        if(direction==="l") {
-            newSlideNumber= slideNumber === 0 ? 5 : slideNumber - 1;
-        }else{
-            newSlideNumber= slideNumber === 5 ? 0 : slideNumber + 1;
+
+        if (direction === "l") {
+            newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+        } else {
+            newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
         }
         setSlideNumber(newSlideNumber)
     };
-    
-    
+
+
     const handleClick = () => {
 
-        if(user){
+        if (user) {
             setOpenModal(true)
         } else {
             navigate("/login")
@@ -214,13 +214,13 @@ const Hotel = () => {
 
     const handleReviewsMove = (direction) => {
         const container = document.querySelector(".reviewsContainer");
-    
+
         if (direction === "l") {
-          container.scrollLeft -= 1000;
+            container.scrollLeft -= 1000;
         } else {
-          container.scrollLeft += 1000;
+            container.scrollLeft += 1000;
         }
-      };
+    };
 
     console.log(days)
     console.log(data.cheapestPrice)
@@ -229,24 +229,24 @@ const Hotel = () => {
 
     return (
         <div>
-            <Navbar/>
-            <Header type="list"/>
+            <Navbar />
+            <Header type="list" />
             {loading ? ("loading") : (
                 <div className="hotelContainer">
                     {open && <div className="slider">
                         <FontAwesomeIcon icon={faCircleXmark} className="close" onClick={() => setOpen(false)} />
-                        <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={()=> handleMove("l")}/>
+                        <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={() => handleMove("l")} />
                         <div className="sliderWrapper">
                             <img src={data.photos[slideNumber]} alt="" className="sliderImg" />
                         </div>
-                        <FontAwesomeIcon icon={faCircleArrowRight} className="arrow"  onClick={()=> handleMove("r")}/>
+                        <FontAwesomeIcon icon={faCircleArrowRight} className="arrow" onClick={() => handleMove("r")} />
                     </div>}
 
                     <div className="hotelWrapper">
                         <h1 className="hotelTitle">{data.name}</h1>
 
                         <div className="hotelAddress">
-                            <FontAwesomeIcon icon={faLocationDot}/>
+                            <FontAwesomeIcon icon={faLocationDot} />
                             <span>{data.address}</span>
                         </div>
 
@@ -279,11 +279,11 @@ const Hotel = () => {
                                     <h1>Amenities</h1>
 
                                     <div className="amenitiesIcons">
-                                    {amenities && amenities.map((amenity, index) => (
-                                        <div key={index} className="amenityItem">
-                                        {getAmenityIcon(amenity)}
-                                        </div>
-                                    ))}
+                                        {amenities && amenities.map((amenity, index) => (
+                                            <div key={index} className="amenityItem">
+                                                {getAmenityIcon(amenity)}
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 
@@ -294,7 +294,7 @@ const Hotel = () => {
 
                                 <h1>Perfect for a {days}-night stay!</h1>
                                 <h2>
-                                    <b>${parseInt(multiResult,10)}</b> ({days} nights)
+                                    <b>${parseInt(multiResult, 10)}</b> ({days} nights)
                                 </h2>
                                 <button onClick={handleClick}>Reserve or Book Now!</button>
 
@@ -303,7 +303,7 @@ const Hotel = () => {
                     </div>
                 </div>
             )}
-            {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/>}
+            {openModal && <Reserve setOpen={setOpenModal} hotelId={id} price={parseInt(multiResult, 10)} />}
 
             <div className="hotelReviews">
                 <h1 className="reviewsTitle">Reviews</h1>
@@ -311,42 +311,42 @@ const Hotel = () => {
                 <div className="sliderReviews">
                     <div className="reviewsContainer">
                         {commentsArray.map((comment, i) => (
-                        <div
-                            key={i}
-                            className={`reviewBox ${i === slideNumber ? "active" : ""}`}
-                        >
-                            <div className="reviewHead">
-                                <div className="reviewAuthor">
-                                    <h3>
-                                        <b>{comment.author}</b>
-                                    </h3>
+                            <div
+                                key={i}
+                                className={`reviewBox ${i === slideNumber ? "active" : ""}`}
+                            >
+                                <div className="reviewHead">
+                                    <div className="reviewAuthor">
+                                        <h3>
+                                            <b>{comment.author}</b>
+                                        </h3>
+                                    </div>
+                                    <div className="reviewStars">
+                                        <StarRatings
+                                            rating={comment.rating}
+                                            starRatedColor="gold"
+                                            numberOfStars={5}
+                                            starDimension="20px"
+                                            starSpacing="0px"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="reviewStars">
-                                    <StarRatings
-                                    rating={comment.rating}
-                                    starRatedColor="gold"
-                                    numberOfStars={5}
-                                    starDimension="20px"
-                                    starSpacing="0px"
-                                    />
-                                </div>
+                                <div className="review">{comment.reviews}</div>
                             </div>
-                            <div className="review">{comment.reviews}</div>
-                        </div>
                         ))}
                     </div>
                 </div>
 
                 <div className="sliderControls">
                     <FontAwesomeIcon
-                    icon={faCircleArrowLeft}
-                    className="arrow"
-                    onClick={() => handleReviewsMove("l")}
+                        icon={faCircleArrowLeft}
+                        className="arrow"
+                        onClick={() => handleReviewsMove("l")}
                     />
                     <FontAwesomeIcon
-                    icon={faCircleArrowRight}
-                    className="arrow"
-                    onClick={() => handleReviewsMove("r")}
+                        icon={faCircleArrowRight}
+                        className="arrow"
+                        onClick={() => handleReviewsMove("r")}
                     />
                 </div>
             </div>
@@ -373,7 +373,7 @@ const Hotel = () => {
                         <div className="input">
                             <input
                                 type="text"
-                                value={name} 
+                                value={name}
                                 onChange={handleName}
                                 placeholder="Name"
                                 id="Name"
@@ -383,7 +383,7 @@ const Hotel = () => {
                         <div className="input">
                             <input
                                 type="number"
-                                value={rating} 
+                                value={rating}
                                 onChange={handleRating}
                                 placeholder="Ratings out of 5"
                                 id="ratings"
@@ -393,7 +393,7 @@ const Hotel = () => {
                         <div className="input">
                             <input
                                 type="text"
-                                value={text} 
+                                value={text}
                                 onChange={handleReview}
                                 placeholder="Review"
                                 id="review"
