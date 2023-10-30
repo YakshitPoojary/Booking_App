@@ -6,21 +6,18 @@ import "./login.css";
 import Navbar from "../../components/navbar/Navbar";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: undefined,
     password: undefined,
   });
-
-  const { loading, error, dispatch } = useContext(AuthContext);
   const [err, setErr] = useState(null);
+  const { loading, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate()
 
-  const handleForgot= () =>{
+  const handleForgot = () => {
     navigate("/forgot");
   }
 
@@ -28,13 +25,27 @@ const Login = () => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
-
-    if(credentials.email == undefined || credentials.password == undefined){
-      setErr("Error, please fill each field");
+    console.log(credentials.email, credentials.password)
+    if (credentials.email === undefined || credentials.password === undefined) {
+      // alert("Error, please fill each field")
+      setErr("Error, please fill each field")
     }
-    else{
+    else if (credentials.password.trim() === '') {
+      // alert("Password Field Is Empty")
+      setErr("Password Field Is Empty")
+    }
+    else if (!isValidEmail(credentials.email)) {
+      // alert("Error, please put email in correct format")
+      setErr("Error, please put email in correct format")
+    }
+    else {
       dispatch({ type: "LOGIN_START" });
       try {
         console.log(credentials.email, credentials.password)
@@ -43,32 +54,32 @@ const Login = () => {
         navigate("/")
       } catch (err) {
         dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
-        setErr(err.response.data.message);
-        //window.location.reload(false);
+        // alert(err.response.data.message)
+        setErr(err.response.data.message)
       }
     }
   };
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       {err && (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                    <Alert severity="error">
-                        {err}
-                    </Alert>
-                </Stack>
+        <Stack sx={{ width: '100%' }} spacing={2}>
+          <Alert severity="error" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {err}
+          </Alert>
+        </Stack>
       )}
       <div className="Logincontainer">
         <div className="header">
-          <div className="text">Sign In</div>
+          <div className="text">Login</div>
           <div className="underline"></div>
         </div>
 
         <div className="inputs">
           <div className="input">
             <input
-              type="email"
+              type="mail"
               placeholder="Email"
               id="email"
               onChange={handleChange}

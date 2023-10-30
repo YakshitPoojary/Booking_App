@@ -1,5 +1,5 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBed, faPlane, faCar, faTaxi, faCalendarDays, faPerson} from "@fortawesome/free-solid-svg-icons";
+import {faBed, faCalendarDays, faPerson} from "@fortawesome/free-solid-svg-icons";
 import "./header.css";
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css';
@@ -60,7 +60,7 @@ const Header = ({type}) => {
     const handleSearch = () => {
         localStorage.setItem('startDate', dates[0].startDate.toISOString());
         localStorage.setItem('endDate', dates[0].endDate.toISOString());
-        
+        localStorage.setItem('optionsRoom',options.room);
         dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
         navigate("/hotels", { state: { destination, dates, options } });
     };
