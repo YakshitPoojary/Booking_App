@@ -17,6 +17,8 @@ import StarRatings from 'react-star-ratings';
 import Icon from "@mdi/react";
 import { mdiPool,mdiWifi, mdiDumbbell, mdiSilverwareForkKnife, mdiSpa, mdiCoffee} from '@mdi/js'
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const Hotel = () => {
     const location = useLocation();
@@ -28,6 +30,7 @@ const Hotel = () => {
     const [rating, setRating] = useState('');
     const [text, setReview] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [err,setError] = useState(null);
 
 
     const { data, loading, error } = useFetch(`https://bookkaro.onrender.com/hotels/find/${id}`)
@@ -46,55 +49,61 @@ const Hotel = () => {
         }
         setSubmitted(false);
     }; 
-
+    
     const handleReview = (e) => {
         setReview(e.target.value)
         setSubmitted(false);
     }
-
+    
     const handleSendReviews = async e => {
         e.preventDefault()
-        try{
-            const newReview = {
-                name: name, 
-                rating: rating, 
-                text: text, 
-                email: user.email,    
-            };
-      
-            await axios.post(`https://bookkaro.onrender.com/hotels/review/${id}`, newReview)
-            setSubmitted(true)
-            alert("Review Submitted");
-            window.location.assign(`/hotels/${id}`);
 
-          }catch(err){
-            console.log(err)
-            alert(err.response.data.message);
-          }
+        if(!user){
+            setError("Login To Send Reviews");
+            console.log(err);
+        }
+        else{
+            try{
+                const newReview = {
+                    name: name, 
+                    rating: rating, 
+                    text: text, 
+                    email: user.email,    
+                };
+                
+                await axios.post(`https://bookkaro.onrender.com/hotels/review/${id}`, newReview)
+                setSubmitted(true)
+                alert("Review Submitted");
+                window.location.assign(`/hotels/${id}`);
+                
+            }catch(err){
+                console.log(err)
+                setError(err.response.data.message);
+            }
+        }
     };
-
-
     
-    
+
     function getAmenityIcon(amenity) {
         switch (amenity) {
-          case "pool":
-            return <Icon path={mdiPool} size={1} />;
+            case "pool":
+                return <Icon path={mdiPool} size={1} />;
           case "wifi":
-            return <Icon path={mdiWifi} size={1} />;
-          case "dumbbell":
-            return <Icon path={mdiDumbbell} size={1} />;
-          case "silverware-fork-knife":
-            return <Icon path={mdiSilverwareForkKnife} size={1} />;
-          case "spa":
+              return <Icon path={mdiWifi} size={1} />;
+              case "dumbbell":
+                  return <Icon path={mdiDumbbell} size={1} />;
+                  case "silverware-fork-knife":
+                      return <Icon path={mdiSilverwareForkKnife} size={1} />;
+                      case "spa":
             return <Icon path={mdiSpa} size={1} />;
-          case "breakfast":
-            return <Icon path={mdiCoffee} size={1} />;
-          default:
-            return null;
-        }
+            case "breakfast":
+                return <Icon path={mdiCoffee} size={1} />;
+                
+                default:
+                    return null;
+                }
     }
-
+    
       
     
     useEffect(() => {
@@ -114,31 +123,37 @@ const Hotel = () => {
     
     const navigate = useNavigate()
 
-    
-    // useEffect(() => {
-        //     const datesJSON = JSON.stringify(dates);
-        //     console.log("Dates json ", datesJSON);
-        //     localStorage.setItem('dates', datesJSON);
-        // }, [dates]);
-
     const { dates, options } = useContext(SearchContext);
     console.log("Dates ",dates);
     const storedStartDate = localStorage.getItem('startDate');
     const storedEndDate = localStorage.getItem('endDate');
+    const optionsRoom = localStorage.getItem('optionsRoom');
+    const endMonth = parseInt(localStorage.getItem('endMonth'),10);
+    const index = endMonth - 1;
+    console.log("Index : ", index);
 
+    
     const startDate = new Date(storedStartDate); 
     const endDate = new Date(storedEndDate);
+    console.log("Data ", data.multiplier);
     
+
+    // const monthMultiplier = data.multiplier[index];
+    
+    console.log("Options room: ", optionsRoom);
+    console.log("End Month: ", typeof(endMonth), endMonth);
+    // console.log("Month multiplier ",monthMultiplier)
     console.log("Start and end dates: ", startDate," and ", endDate)
     console.log("Stored Start and end dates: ", storedStartDate," and ", storedEndDate)
 
-    
+        
     const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
     function dayDifference(date1, date2) {
         const timeDiff = Math.abs(date2.getTime() - date1.getTime());
         const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
         return diffDays;
     }
+
     let days = 0;
     
     if (storedEndDate && storedStartDate) {
@@ -147,7 +162,6 @@ const Hotel = () => {
         console.log("Days ", days);
     }
 
-    
     const handleOpen = (i)=> {
         setSlideNumber(i);
         setOpen(true);
@@ -166,6 +180,7 @@ const Hotel = () => {
     
     
     const handleClick = () => {
+
         if(user){
             setOpenModal(true)
         } else {
@@ -183,10 +198,9 @@ const Hotel = () => {
         }
       };
 
-      console.log(days)
-      console.log(data.cheapestPrice)
-      console.log(options.room)
-      console.log("Price: ", days * data.cheapestPrice * options.room)
+    console.log(days)
+    console.log(data.cheapestPrice)
+    console.log(options.room)
 
 
     return (
@@ -256,7 +270,7 @@ const Hotel = () => {
 
                                 <h1>Perfect for a {days}-night stay!</h1>
                                 <h2>
-                                    <b>${days * data.cheapestPrice * options.room}</b> ({days} nights)
+                                    <b>${days * data.cheapestPrice * optionsRoom* data.multiplier[index]}</b> ({days} nights)
                                 </h2>
                                 <button onClick={handleClick}>Reserve or Book Now!</button>
 
@@ -324,7 +338,13 @@ const Hotel = () => {
                         <div className="text">Submit A Review</div>
                         <div className="underline"></div>
                     </div>
-
+                    {err && (
+                        <Stack sx={{ width: '100%' }} spacing={2} className="error">
+                            <Alert severity="error" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                {err}
+                            </Alert>
+                        </Stack>
+                    )}
                     <div className="inputs">
                         <div className="input">
                             <input

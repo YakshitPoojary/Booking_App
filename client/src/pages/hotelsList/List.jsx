@@ -21,6 +21,8 @@ const List = () => {
 
     const storedStartDate = localStorage.getItem('startDate');
     const storedEndDate = localStorage.getItem('endDate');
+    const endMonth = parseInt(localStorage.getItem('endMonth'),10);
+    const index = endMonth - 1;
 
     if (storedStartDate && storedEndDate) {
       const startDate = new Date(storedStartDate); 
@@ -35,7 +37,8 @@ const List = () => {
     
     const handleClick = () => {
         reFetch();
-      };
+    };
+
 
     return (
         <div>

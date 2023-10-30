@@ -3,6 +3,11 @@ import "./searchItem.css"
 
 
 const SearchItem = ({item}) => {
+
+    const endMonth = parseInt(localStorage.getItem('endMonth'),10);
+    const index = endMonth - 1;
+    console.log(index);
+    console.log(item);
     return (
         <div className="searchItem">
            <img
@@ -31,8 +36,8 @@ const SearchItem = ({item}) => {
                     <button>{item.rating}</button>
                 </div>}
                 <div className="siDetailTexts">
-                    <span className="siPrice">${item.cheapestPrice}</span>
-                    <span className="siTaxOp">Includes taxes and fees</span>
+                    <span className="siPrice">${parseInt(item.cheapestPrice * item.multiplier[index])}</span>
+
                     <Link to={`/hotels/${item._id}`}>
                         <button className="siCheckButton">See availability</button>
                     </Link>

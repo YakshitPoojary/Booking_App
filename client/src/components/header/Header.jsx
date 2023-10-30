@@ -58,9 +58,13 @@ const Header = ({type}) => {
     const { dispatch } = useContext(SearchContext);
 
     const handleSearch = () => {
+        const endDate = dates[0].endDate;
+        const endMonth = endDate.getMonth()
+
         localStorage.setItem('startDate', dates[0].startDate.toISOString());
         localStorage.setItem('endDate', dates[0].endDate.toISOString());
         localStorage.setItem('optionsRoom',options.room);
+        localStorage.setItem('endMonth',endMonth);
         dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
         navigate("/hotels", { state: { destination, dates, options } });
     };
