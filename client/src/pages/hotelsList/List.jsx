@@ -3,8 +3,6 @@ import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import format from "date-fns/format";
-import { DateRange } from 'react-date-range';
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch"
 
@@ -13,46 +11,36 @@ const List = () => {
 
     const location = useLocation()
     const [destination, setDestination ] = useState(location.state.destination);
-    const [dates, setDates ] = useState(location.state.dates);
-    const [openDate, setOpenDate] = useState(false);
     const [options, setOptions ] = useState(location.state.options);
     const [min, setMin] = useState(undefined);
     const [max, setMax] = useState(undefined);
 
-    const storedStartDate = localStorage.getItem('startDate');
-    const storedEndDate = localStorage.getItem('endDate');
+  
     const endMonth = parseInt(localStorage.getItem('endMonth'),10);
     const index = endMonth - 1;
 
-    if (storedStartDate && storedEndDate) {
-      const startDate = new Date(storedStartDate); 
-      const endDate = new Date(storedEndDate);
-      // console.log(startDate, endDate)
-    } else {
-      // console.log("no date");
-    }
 
 
     const [filteredData, setFilteredData] = useState([]);
     const [loadingFilteredData, setLoadingFilteredData] = useState(false);
     
-    
-    const { data, loading, error, reFetch } = useFetch(`https://bookkaro.onrender.com/hotels?city=${destination}&min=${min || 0}&max=${max || 1000}`);
-    
+    let calculatedPrice;
+    const { data, loading, error, reFetch } = useFetch(`https://bookkaro.onrender.com/hotels?city=${destination}&min=${calculatedPrice || 0}&max=${calculatedPrice || 1000}`);
     useEffect(() => {
       if (data.length > 0) {
           const filteredHotels = data.filter((item) => {
-          const calculatedPrice = item.cheapestPrice * item.multiplier[index];
+          calculatedPrice = item.cheapestPrice * item.multiplier[index];
           console.log("Calculated Price: ", calculatedPrice)
           return (
-            (min == undefined || calculatedPrice >= min) &&
-            (max == undefined || calculatedPrice <= max)
+            (min === undefined || calculatedPrice >= min) &&
+            (max === undefined || calculatedPrice <= max)
           );
         });
   
         setFilteredData(filteredHotels);
       }
     }, [data, min, max, index]);
+    
 
     console.log("filteredData:", filteredData);
     
