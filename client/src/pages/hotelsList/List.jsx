@@ -20,7 +20,6 @@ const List = () => {
     const index = endMonth - 1;
 
 
-
     const [filteredData, setFilteredData] = useState([]);
     const [loadingFilteredData, setLoadingFilteredData] = useState(false);
     
