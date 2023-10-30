@@ -3,12 +3,15 @@ import "./register.css"
 import {useState} from "react"; 
 import Navbar from "../../components/navbar/Navbar";
 import axios from "axios";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [err, setErr] = useState(null);
 
 
     const handleEmail = (e) => {
@@ -41,9 +44,15 @@ const Register = () => {
 
           }catch(err){
             console.log(err)
-            alert("Error, please fill each field");
+            
           }
     };
+
+    {err && (
+        <Stack sx={{ width: '100%' }} spacing={2}>
+          <Alert severity="error">Please Fill Each Field</Alert>
+        </Stack>
+      )}
 
 
     return (

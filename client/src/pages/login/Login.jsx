@@ -33,7 +33,7 @@ const Login = () => {
       navigate("/")
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
-      alert(error.message);
+      alert(err.response.data.message);
       window.location.reload(false);
     }
   };
