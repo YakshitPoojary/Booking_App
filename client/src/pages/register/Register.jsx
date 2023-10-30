@@ -1,10 +1,10 @@
-import React from "react";
-import "./register.css"
-import {useState} from "react"; 
+import React, { useState } from "react";
+import "./register.css";
 import Navbar from "../../components/navbar/Navbar";
 import axios from "axios";
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -13,7 +13,6 @@ const Register = () => {
     const [submitted, setSubmitted] = useState(false);
     const [err, setErr] = useState(null);
 
-
     const handleEmail = (e) => {
         setEmail(e.target.value);
         setSubmitted(false);
@@ -21,43 +20,41 @@ const Register = () => {
     
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
+        setSubmitted (false);
     };
 
     const handlePhone = (e) => {
-        setPhone(e.target.value)
+        setPhone(e.target.value);
         setSubmitted(false);
     }
-    
 
     const handleClick = async e => {
         e.preventDefault()
-        try{
+        try {
             const newUser = {
-              email,phone,password
+                email, phone, password
             };
       
-            await axios.post("https://bookkaro.onrender.com/auth/register", newUser)
-            setSubmitted(true)
+            await axios.post("https://bookkaro.onrender.com/auth/register", newUser);
+            setSubmitted(true);
             alert("User created!🎉");
-            window.location.assign("/login")
-
-          }catch(err){
-            console.log(err)
-            
-          }
+            window.location.assign("/login");
+        } catch (err) {
+            console.log(err);
+            setErr("Error, please fill each field"); // Set the err state
+        }
     };
-
-    {err && (
-        <Stack sx={{ width: '100%' }} spacing={2}>
-          <Alert severity="error">Please Fill Each Field</Alert>
-        </Stack>
-      )}
-
 
     return (
         <div>
             <Navbar/>
+            {err && (
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert severity="error">
+                        {err}
+                    </Alert>
+                </Stack>
+            )}
             <div className="container">
                 <div className="header">
                     <div className="text">Sign Up</div>
@@ -79,8 +76,9 @@ const Register = () => {
                     <button className="submit" type="submit" onClick={handleClick}>Register</button>
                 </div>
             </div>
+
         </div>
-  )       
+    );
 }
 
-export default Register
+export default Register;
